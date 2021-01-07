@@ -19,13 +19,13 @@ namespace ExamenJohnnyDePaz.Models
         public virtual DbSet<Empleado> Empleado { get; set; }
         public virtual DbSet<EmpleadoHabilidad> EmpleadoHabilidad { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-F2HN63L;Database=Examen;Trusted_Connection=True;");
-            }
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        optionsBuilder.UseSqlServer("Server=DESKTOP-F2HN63L;Database=Examen;Trusted_Connection=True;");
+        //    }
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
