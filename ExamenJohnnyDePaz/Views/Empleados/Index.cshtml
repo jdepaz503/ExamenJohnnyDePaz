@@ -16,7 +16,7 @@
 </p>
 
 <div>
-    <table id="tblCustomers" class="dataTable">
+    <table id="tblEmpleados" class="dataTable">
         <thead>
             <tr>
                 <th>Id</th>
@@ -46,9 +46,7 @@
             data: '{}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: OnSuccess,//function (response) {
-                //console.log(response);
-            //},//
+            success: OnSuccess,
             failure: function (response) {
                 alert(response);
             },
@@ -60,7 +58,7 @@
     function OnSuccess(response) {
         var customers = eval(response);
         console.log(customers);
-        $("#tblCustomers").DataTable(
+        $("#tblEmpleados").DataTable(
             {
                 language: {
                     processing: "Procesando...",
@@ -116,74 +114,3 @@
             });
     };
 </script>
-
-
-
-@*<table class="table" id="EmpleadosList">
-        <thead>
-            <tr>
-                <th>
-                    Nombre
-                </th>
-                <th>
-                    DUI
-                </th>
-                <th>
-                    Correo
-                </th>
-                <th>
-                    F. Nacimiento
-                </th>
-                <th>
-                    F. Ingreso
-                </th>
-                <th>
-                    Jefe
-                </th>
-                <th>
-                    Área
-                </th>
-                <th>
-                    Foto
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NombreCompleto)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Cedula)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Correo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaNacimiento)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaIngreso)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Foto)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdAreaNavigation.Nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdJefeNavigation.NombreCompleto)
-                        </td>
-                        <td>
-                            <a asp-action="Delete" asp-route-id="@item.IdEmpleado">Eliminar</a>
-                            <a asp-action="Edit" asp-route-id="@item.IdEmpleado">Editar</a> |
-                            <a asp-action="Details" asp-route-id="@item.IdEmpleado">Ver</a> |
-
-                        </td>
-                    </tr>
-                }
-        </tbody>
-    </table>*@

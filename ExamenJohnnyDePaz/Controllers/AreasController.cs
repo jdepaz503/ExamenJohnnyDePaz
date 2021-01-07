@@ -23,6 +23,11 @@ namespace ExamenJohnnyDePaz.Controllers
         {
             return View(await _context.Area.ToListAsync());
         }
+        [HttpPost]
+        public IActionResult json()
+        {
+            return Json(_context.Area.ToList());
+        }
 
         // GET: Areas/Details/5
         public async Task<IActionResult> Details(int? id)
