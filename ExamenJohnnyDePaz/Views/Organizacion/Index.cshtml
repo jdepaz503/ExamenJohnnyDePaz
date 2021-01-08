@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewData["Title"] = "Organización";
+}
+
+@*<div id="jstree">
+    </div>
+    <form method="post" asp-controller="Home" asp-action="Index">
+        <input type="hidden" name="selectedItems" id="selectedItems" />
+        <input type="submit" value="Submit" />
+    </form>*@
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        JsTree Demo
+                    </div>
+                    <div class="panel-body">
+                        <div id="jstree">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#jstree').on('changed.jstree', function (e, data) {
+            var i, j;
+            var selectedItems = [];
+            for (i = 0, j = data.selected.length; i < j; i++) {
+
+                //Fetch the Id.
+                var id = data.selected[i];
+
+                //Remove the ParentId.
+                if (id.indexOf('-') != -1) {
+                    id = id.split("-")[1];
+                }
+
+                //Add the Node to the JSON Array.
+                selectedItems.push({
+                    text: data.instance.get_node(data.selected[i]).text,
+                    id: id,
+                    parent: data.node.parents[0]
+                });
+            }
+
+            //Serialize the JSON Array and save in HiddenField.
+            $('#selectedItems').val(JSON.stringify(selectedItems));
+        }).jstree({
+            "core": {
+                "themes": {
+                    "variant": "large"
+                },
+                "data":  @Html.Raw(ViewBag.Json) 
+            }
+        });
+            });
+</script>
+
+
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $('#jstree').jstree({
+                json_data: {
+                    ajax: {
+                        url: "Organizacion/nodes",
+                        type: "POST",
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        },
+                        success: function (data, textStatus, jqXHR) {
+                            if ("Saved" in data) {
+                            }
+                        },
+                        complete: function () {
+                        }
+                    }
+                },
+                ui: { select_limit: 1, initially_select: ["#rootComponent"] },
+                plugins: ["json_data", "ui", "themes"],
+                core: {
+                    html_titles: true
+                }
+            }).bind("select_node.jstree", function (e, data) {
+                indexNodeSelected = data.rslt.obj.attr('id');
+                typeNode = data.rslt.obj.attr('typeNode');
+                featureType = data.rslt.obj.attr('featureType');
+            }).bind("before.jstree", function (e, data) {
+            });
+        });
+    </script>*@

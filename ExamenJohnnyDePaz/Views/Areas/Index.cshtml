@@ -1,0 +1,97 @@
+﻿@model IEnumerable<ExamenJohnnyDePaz.Models.Area>
+
+@{
+    ViewData["Title"] = "Áreas";
+}
+
+<h1>Áreas</h1>
+
+<p>
+    <a asp-action="Create">Agregar Área</a>
+</p>
+<table class="dataTable" id="tblAreas">
+    <thead>
+        <tr>
+            <th>idArea</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>      
+    </tbody>
+</table>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Areas/json",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: OnSuccess,
+            failure: function (response) {
+                alert(response);
+            },
+            error: function (response) {
+                alert(response);
+            }
+        });
+    });
+    function OnSuccess(response) {
+        var customers = eval(response);
+        $("#tblAreas").DataTable(
+            {
+                language: {
+                    processing: "Procesando...",
+                    lengthMenu: "Mostrar _MENU_ registros",
+                    zeroRecords: "No se encontraron resultados",
+                    emptyTable: "Ningún dato disponible en esta tabla",
+                    info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    infoFiltered: "(filtrado de un total de _MAX_ registros)",
+                    search: "Buscar:",
+                    infoThousands: ",",
+                    loadingRecords: "Cargando...",
+                    paginate: {
+                        first: "Primero",
+                        last: "Último",
+                        next: "Siguiente",
+                        previous: "Anterior"
+                    },
+                    aria: {
+                        sortAscending: ": Activar para ordenar la columna de manera ascendente",
+                        sortDescending: ": Activar para ordenar la columna de manera descendente"
+                    }
+                },
+                bLengthChange: true,
+                lengthMenu: [[5, 10, -1], [5, 10, "All"]],
+                bFilter: true,
+                bSort: true,
+                bPaginate: true,
+                data: customers,
+                columnDefs: [
+                    {
+                        'targets': [0],
+                        'visible': false,
+                        'searchable': false
+                    }
+                ],
+                columns: [
+                    { 'data': 'idArea' },
+                    { 'data': 'nombre' },
+                    { 'data': 'descripcion' },
+                    { 'data': 'idArea','render': function (data) {
+                        return '<a class="btn btn-info" style="margin-left: 5px;margin-top: 5px" href="/Areas/Edit/' + data + '")><i class="fa fa-pencil"></i> Editar</a> <a class="btn btn-danger" style="margin-left: 5px;margin-top: 5px" href="/Areas/Delete/' + data + '")><i class="fa fa-trash"></i> Eliminar</a>';
+                    }
+                    }
+
+                ]
+            });
+    };
+</script>
+

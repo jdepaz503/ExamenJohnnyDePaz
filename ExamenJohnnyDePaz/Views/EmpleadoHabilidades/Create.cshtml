@@ -1,0 +1,36 @@
+﻿@model ExamenJohnnyDePaz.Models.EmpleadoHabilidad
+
+@{
+    ViewData["Title"] = "Registrar Habilidades";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Registrar Habilidades</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdEmpleado" class="control-label">Empleado</label>
+                <select asp-for="IdEmpleado" class ="form-control" asp-items="ViewBag.IdEmpleado"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreHabilidad" class="control-label">Nombre de Habilidad</label>
+                <input asp-for="NombreHabilidad" class="form-control" />
+                <span asp-validation-for="NombreHabilidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver al Listado</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
