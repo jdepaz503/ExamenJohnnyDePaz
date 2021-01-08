@@ -101,7 +101,7 @@
                     { 'data': 'area' },
                     { 'data': 'foto' },
                     { 'data': 'idEmpleado','render': function (data) {
-                        return '<a class="btn btn-info" style="margin-left: 5px;margin-top: 5px" href="/Empleados/Edit/' + data + '")><i class="fa fa-pencil"></i> Editar</a> <a class="btn btn-danger" style="margin-left: 5px;margin-top: 5px" href="/Empleados/Delete/' + data + '")><i class="fa fa-trash"></i> Eliminar</a> <a class="btn btn-info" style="margin-left: 5px;margin-top: 5px" href="/EmpleadoHabilidades/HabilidadesEmpleado/' + data + '")><i class="fa fa-pencil"></i> Habilidades</a>';
+                        return '<a class="btn btn-info" style="margin-left: 5px;margin-top: 5px" href="/Empleados/Edit/' + data + '")><i class="fa fa-pencil" aria-hidden="true"></i></a><a class="btn btn-info" style="margin-left: 5px;margin-top: 5px" href="/EmpleadoHabilidades/HabilidadesEmpleado/' + data + '")><i class="fa fa-tasks" aria-hidden="true"></i></a><a class="btn btn-danger" style="margin-left: 5px;margin-top: 5px" href="/Empleados/Delete/' + data + '")><i class="fa fa-trash-o" aria-hidden="true"></i></a>';
                     }
                     }
                      

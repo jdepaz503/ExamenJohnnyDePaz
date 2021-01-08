@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExamenJohnnyDePaz.Models;
+using System.IO;
 
 namespace ExamenJohnnyDePaz.web.Controllers
 {
@@ -82,6 +83,10 @@ namespace ExamenJohnnyDePaz.web.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                Empleado emp = new Empleado();
+
+
                 _context.Add(empleado);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
