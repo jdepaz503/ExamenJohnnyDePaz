@@ -21,6 +21,12 @@ Entity Framework Core ⚙
 --------------------
 [![preview version](https://img.shields.io/badge/nuget-v3.1.0-blue)](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/3.1.0) [![downloads](https://img.shields.io/badge/download-7M-green)](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/3.1.0)
 
+Jquery ⚙
+DataTables ⚙
+JsTree ⚙
+
+
+
 
 # 3. Instalación-Despliegue local 🛠 <div id='inst' />
 1. Disponer de *VisualStudio* 2017/2019 o *Visual Studio Code* con el *[SDK .net core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)*
