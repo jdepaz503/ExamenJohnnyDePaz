@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ExamenJohnnyDePaz.Models.Area>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Áreas";
 }
 
 <h1>Áreas</h1>
@@ -18,22 +18,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-        @*@foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descripcion)
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.IdArea">ver</a> |
-                    <a asp-action="Edit" asp-route-id="@item.IdArea">Editar</a> |
-                    <a asp-action="Delete" asp-route-id="@item.IdArea">Eliminar</a>
-                </td>
-            </tr>*@
-        
+    <tbody>      
     </tbody>
 </table>
 
@@ -59,7 +44,6 @@
     });
     function OnSuccess(response) {
         var customers = eval(response);
-        console.log(customers);
         $("#tblAreas").DataTable(
             {
                 language: {

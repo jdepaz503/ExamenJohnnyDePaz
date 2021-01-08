@@ -33,7 +33,8 @@ namespace ExamenJohnnyDePaz.web.Controllers
                 { 
                     x.IdEmpleado,
                     x.NombreCompleto,
-                    x.Cedula,x.Correo,
+                    x.Cedula,
+                    x.Correo,
                     x.FechaNacimiento,
                     x.FechaIngreso,
                     jefe=x.IdJefeNavigation.NombreCompleto,

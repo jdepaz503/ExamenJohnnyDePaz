@@ -1,36 +1,32 @@
-﻿@model IEnumerable<ExamenJohnnyDePaz.Models.Empleado>
+﻿@model IEnumerable<ExamenJohnnyDePaz.Models.EmpleadoHabilidad>
 
 @{
-    ViewData["Title"] = "Empleados";
-
+    ViewData["Title"] = "Habilidades";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Empleados</h1>
+<h1>Habilidades</h1>
 
 <p>
-    <a asp-action="Create">Registrar Empleado</a>
+    <a asp-action="Create">Registrar Habilidad</a>
 </p>
+<table class="dataTable" id="tblHabilidades">
+    <thead>
+        <tr>
+            <th>idHabilidad</th>
+            <th>
+                Habilidad
+            </th>
+            <th>
+                Nombre de Empleado
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
 
-<div>
-    <table id="tblEmpleados" class="dataTable">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>DUI</th>
-                <th>Correo</th>
-                <th>F. Nacimiento</th>
-                <th>F. Ingreso</th>
-                <th>Jefe</th>
-                <th>Área</th>
-                <th>Foto</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
@@ -38,7 +34,7 @@
     $(function () {
         $.ajax({
             type: "POST",
-            url: "/Empleados/json",
+            url: "/EmpleadoHabilidades/json",
             data: '{}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -53,7 +49,8 @@
     });
     function OnSuccess(response) {
         var customers = eval(response);
-        $("#tblEmpleados").DataTable(
+        console.log(response);
+        $("#tblHabilidades").DataTable(
             {
                 language: {
                     processing: "Procesando...",
@@ -76,7 +73,7 @@
                         sortAscending: ": Activar para ordenar la columna de manera ascendente",
                         sortDescending: ": Activar para ordenar la columna de manera descendente"
                     }
-                }, 
+                },
                 bLengthChange: true,
                 lengthMenu: [[5, 10, -1], [5, 10, "All"]],
                 bFilter: true,
@@ -90,21 +87,15 @@
                         'searchable': false
                     }
                 ],
-                columns: [                    
-                    { 'data': 'idEmpleado' },
-                    { 'data': 'nombreCompleto' },
-                    { 'data': 'cedula' },
-                    { 'data': 'correo' },
-                    { 'data': 'fechaNacimiento' },
-                    { 'data': 'fechaIngreso' },
-                    { 'data': 'jefe' },
-                    { 'data': 'area' },
-                    { 'data': 'foto' },
-                    { 'data': 'idEmpleado','render': function (data) {
-                        return '<a class="btn btn-info" style="margin-left: 5px;margin-top: 5px" href="/Empleados/Edit/' + data + '")><i class="fa fa-pencil"></i> Editar</a> <a class="btn btn-danger" style="margin-left: 5px;margin-top: 5px" href="/Empleados/Delete/' + data + '")><i class="fa fa-trash"></i> Eliminar</a> <a class="btn btn-info" style="margin-left: 5px;margin-top: 5px" href="/EmpleadoHabilidades/HabilidadesEmpleado/' + data + '")><i class="fa fa-pencil"></i> Habilidades</a>';
+                columns: [
+                    { 'data': 'idHabilidad' },
+                    { 'data': 'nombreHabilidad' },
+                    { 'data': 'empleado' },
+                    { 'data': 'idHabilidad','render': function (data) {
+                        return '<a class="btn btn-info" style="margin-left: 5px;margin-top: 5px" href="/EmpleadoHabilidades/Edit/' + data + '")><i class="fa fa-pencil"></i> Editar</a> <a class="btn btn-danger" style="margin-left: 5px;margin-top: 5px" href="/EmpleadoHabilidades/Delete/' + data + '")><i class="fa fa-trash"></i> Eliminar</a>';
                     }
                     }
-                     
+
                 ]
             });
     };
